@@ -53,8 +53,14 @@ if &term == "screen" || &term == "xterm"
   set title
 endif
 
-" CaraWeb filewatcher fix
-set backupcopy=yes
+let &titleold = $TITLE
+
+if exists('$TMUX')
+  autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
+  autocmd VimLeave * call system("tmux setw automatic-rename")
+  autocmd BufEnter * let &titlestring = ' ' . expand("%:t")
+  set title
+endif
 
 " ------------------------------ begin vim-plug ------------------------------
 
