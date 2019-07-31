@@ -30,6 +30,9 @@ set tabstop=4
 set shiftwidth=4
 set noexpandtab
 
+" vim leave my mouse alone
+set mouse-=a
+
 " Nicer tab navigation
 nnoremap H gT
 nnoremap L gt
@@ -81,11 +84,7 @@ Plug 'tpope/vim-commentary'
 
 " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
-"
-" Snippets and dependencies
-Plug 'garbas/vim-snipmate'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
+
 
 " Better folder browsing
 Plug 'scrooloose/nerdtree'
@@ -102,10 +101,6 @@ Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 " ------------------------------  end vim-plug  ------------------------------
-
-" Author comments in snippets
-let g:snips_author = 'Change Me'
-let g:snips_email = 'Change Me'
 
 " Disable auto-commenting on new lines (so annoying)
 autocmd BufNewFile,BufRead,FileType,OptionSet * set formatoptions-=cro

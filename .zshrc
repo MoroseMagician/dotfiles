@@ -11,7 +11,11 @@ prompt redhat
 # Load alises
 source $HOME/.aliases
 # Force screen-256color
-export TERM='screen-256color'
+export TERM='xterm-256color'
 
-# Set the editor
+# Set the editor and pager
 export EDITOR='vim'
+export PAGER='less'
+
+# Locale stuff
+export LANG='en_US.UTF-8'
