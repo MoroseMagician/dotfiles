@@ -1,10 +1,22 @@
-set autoindent
+" Colors
+syntax on
+set t_Co=256
+set background=dark
+colorscheme minimalist
 
-" Bunch of status bar stuff
+" Status bar
 set wildmenu
-set cmdheight=2
-set number
+set cmdheight=1
 set ruler
+
+set autoindent
+set autoread
+
+" Line numbers
+set number
+
+" Always show the sign column
+set signcolumn=yes
 
 " Always display one line before or after the cursor
 set scrolloff=1
@@ -18,91 +30,20 @@ set complete-=i
 " Incremental search
 set incsearch
 
-" Color scheme
-set t_Co=256
-colorscheme termschool
+" Hide buffers
+set hidden
 
-" Statusbar
-set laststatus=2
-
-" Default indentation settings (probably overridden by DetectIndent)
+" Default indentation settings
 set tabstop=4
 set shiftwidth=4
-set noexpandtab
-
-" vim leave my mouse alone
-set mouse-=a
-
-" Nicer tab navigation
-nnoremap H gT
-nnoremap L gt
-
-" No arrow keys
-map <Up> <Nop>
-map <Down> <Nop>
-map <Left> <Nop>
-map <Right> <Nop>
-
-" Boilerplate templates for new code files
-au BufNewFile * silent! 0r ~/templates/template.%:e
-
-" Change the titlebar to what I'm editing
-let &titlestring = expand("%:t")
-if &term == "screen"
-  set t_ts=^[k
-  set t_fs=^[\
-endif
-if &term == "screen" || &term == "xterm"
-  set title
-endif
-
-let &titleold = $TITLE
-
-if exists('$TMUX')
-  autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
-  autocmd VimLeave * call system("tmux setw automatic-rename")
-  autocmd BufEnter * let &titlestring = ' ' . expand("%:t")
-  set title
-endif
-
-" ------------------------------ begin vim-plug ------------------------------
-
-" If vim-plug isn't downloaded and loaded, get it!
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-" NOTE: use :PlugInstall to install the plugins
-
-" Start vim-plug and load plugins
-call plug#begin('~/.vim/plugged')
-
-" Comment stuff out with gcc and gc
-Plug 'tpope/vim-commentary'
-
-" A Git wrapper so awesome, it should be illegal
-Plug 'tpope/vim-fugitive'
-
-
-" Better folder browsing
-Plug 'scrooloose/nerdtree'
-
-" Syntax checker and linter thing
-Plug 'vim-syntastic/syntastic'
-
-" Trailing whitespace detect
-Plug 'ntpeters/vim-better-whitespace'
-
-" EditorConfig
-Plug 'editorconfig/editorconfig-vim'
-
-call plug#end()
-
-" ------------------------------  end vim-plug  ------------------------------
+set expandtab
 
 " Disable auto-commenting on new lines (so annoying)
 autocmd BufNewFile,BufRead,FileType,OptionSet * set formatoptions-=cro
 autocmd BufNewFile,BufRead,FileType,OptionSet * setlocal formatoptions-=cro
 
+" Extra settings
+source ~/.vim/statusline.vim
+source ~/.vim/plugins.vim
+source ~/.vim/keybinds.vim
+source ~/.vim/misc.vim
